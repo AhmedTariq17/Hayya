@@ -259,7 +259,7 @@ const PrivacySettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
 
           <TouchableOpacity
             style={[styles.legalItem, { backgroundColor: theme.background.card }]}
-            onPress={() => Linking.openURL('https://example.com/privacy-policy')}
+            onPress={() => Linking.openURL('https://ahmedtariq17.github.io/Hayya/privacy-policy.html')}
           >
             <Ionicons name="document-text" size={20} color={PillarsColors.gold[500]} />
             <Text style={[styles.legalText, { color: theme.text.primary }]}>
@@ -270,7 +270,7 @@ const PrivacySettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
 
           <TouchableOpacity
             style={[styles.legalItem, { backgroundColor: theme.background.card }]}
-            onPress={() => Linking.openURL('https://example.com/terms')}
+            onPress={() => Linking.openURL('https://ahmedtariq17.github.io/Hayya/terms-of-service.html')}
           >
             <Ionicons name="document-text" size={20} color={PillarsColors.gold[500]} />
             <Text style={[styles.legalText, { color: theme.text.primary }]}>
