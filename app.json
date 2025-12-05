@@ -1,0 +1,125 @@
+{
+  "expo": {
+    "name": "Hayya",
+    "slug": "islamic-app",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./Logo.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "hayya",
+    "primaryColor": "#1B7F65",
+    "backgroundColor": "#FFFFFF",
+    "description": "Hayya - Your trusted companion for Islamic practices - Prayer times, Qibla direction, Tasbih counter and more",
+    "githubUrl": "https://github.com/islamiccompanion",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1B7F65"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hayya.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Hayya needs your location to calculate accurate prayer times based on your current position.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Hayya needs your location to calculate accurate prayer times and send prayer reminders even when the app is in the background.",
+        "NSUserTrackingUsageDescription": "This app does not track users for advertising purposes.",
+        "UIBackgroundModes": ["location", "fetch", "remote-notification"],
+        "NSCalendarsUsageDescription": "Hayya can add prayer times to your calendar for easy access.",
+        "NSMotionUsageDescription": "Hayya uses motion sensors for accurate Qibla direction.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1B7F65"
+      },
+      "package": "com.hayya.app",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED",
+        "SCHEDULE_EXACT_ALARM",
+        "USE_EXACT_ALARM",
+        "POST_NOTIFICATIONS",
+        "WAKE_LOCK"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "hayya",
+              "host": "*"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "name": "Hayya",
+      "shortName": "Hayya",
+      "description": "Your trusted companion for Islamic practices",
+      "backgroundColor": "#1B7F65",
+      "themeColor": "#1B7F65",
+      "display": "standalone",
+      "orientation": "portrait"
+    },
+    "plugins": [
+      "expo-location",
+      "expo-font",
+      "expo-dev-client",
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 24,
+            "enableProguardInReleaseBuilds": false,
+            "enableShrinkResourcesInReleaseBuilds": false,
+            "newArchEnabled": true
+          },
+          "ios": {
+            "deploymentTarget": "15.1",
+            "newArchEnabled": true
+          }
+        }
+      ]
+    ],
+    "notification": {
+      "icon": "./Logo.png",
+      "color": "#1B7F65",
+      "androidMode": "default",
+      "androidCollapsedTitle": "Prayer Reminders",
+      "iosDisplayInForeground": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e55c1091-0c79-4abc-ba83-dec78095ba1f"
+      }
+    }
+  }
+}
