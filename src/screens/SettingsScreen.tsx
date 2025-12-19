@@ -546,7 +546,7 @@ const SettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               title="Privacy Policy"
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                Alert.alert('Coming Soon', 'Privacy policy will be available soon, In Sha Allah');
+                navigation.navigate('PrivacyPolicy');
               }}
               gradient={sectionGradients.about}
               delay={950}
@@ -557,7 +557,7 @@ const SettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               title="Terms of Service"
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                Alert.alert('Coming Soon', 'Terms of service will be available soon, In Sha Allah');
+                navigation.navigate('TermsOfService');
               }}
               gradient={sectionGradients.about}
               delay={1000}

@@ -16,6 +16,8 @@ import PremiumTasbihScreenV3 from '../screens/PremiumTasbihScreenV3';
 import AdjustPrayerTimesScreen from '../screens/AdjustPrayerTimesScreen';
 import LocationSettingsScreen from '../screens/LocationSettingsScreen';
 import PrivacySettingsScreen from '../screens/PrivacySettingsScreen';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
+import TermsOfServiceScreen from '../screens/TermsOfServiceScreen';
 import AboutScreen from '../screens/AboutScreen';
 
 const Tab = createBottomTabNavigator();
@@ -78,6 +80,8 @@ const MainNavigator = () => {
       <Stack.Screen name="AdjustPrayerTimes" component={AdjustPrayerTimesScreen} />
       <Stack.Screen name="LocationSettings" component={LocationSettingsScreen} />
       <Stack.Screen name="PrivacySettings" component={PrivacySettingsScreen} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
+      <Stack.Screen name="TermsOfService" component={TermsOfServiceScreen} />
       <Stack.Screen name="AboutScreen" component={AboutScreen} />
     </Stack.Navigator>
   );

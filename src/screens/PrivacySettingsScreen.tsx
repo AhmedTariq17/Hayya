@@ -259,24 +259,24 @@ const PrivacySettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
 
           <TouchableOpacity
             style={[styles.legalItem, { backgroundColor: theme.background.card }]}
-            onPress={() => Linking.openURL('https://example.com/privacy-policy')}
+            onPress={() => navigation.navigate('PrivacyPolicy')}
           >
             <Ionicons name="document-text" size={20} color={PillarsColors.gold[500]} />
             <Text style={[styles.legalText, { color: theme.text.primary }]}>
               Privacy Policy
             </Text>
-            <Ionicons name="open-outline" size={18} color={theme.text.tertiary} />
+            <Ionicons name="chevron-forward" size={18} color={theme.text.tertiary} />
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.legalItem, { backgroundColor: theme.background.card }]}
-            onPress={() => Linking.openURL('https://example.com/terms')}
+            onPress={() => navigation.navigate('TermsOfService')}
           >
             <Ionicons name="document-text" size={20} color={PillarsColors.gold[500]} />
             <Text style={[styles.legalText, { color: theme.text.primary }]}>
               Terms of Service
             </Text>
-            <Ionicons name="open-outline" size={18} color={theme.text.tertiary} />
+            <Ionicons name="chevron-forward" size={18} color={theme.text.tertiary} />
           </TouchableOpacity>
 
         </View>
@@ -317,11 +317,11 @@ const PrivacySettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
             Questions about privacy?
           </Text>
           <Text style={[styles.supportText, { color: theme.text.secondary }]}>
-            Contact our privacy team at privacy@hayya.app
+            Contact our privacy team at hayyaprayers@gmail.com
           </Text>
           <TouchableOpacity
             style={styles.contactButton}
-            onPress={() => Linking.openURL('mailto:privacy@hayya.app')}
+            onPress={() => Linking.openURL('mailto:hayyaprayers@gmail.com')}
           >
             <LinearGradient
               colors={PillarsColors.gradients.navyGold as any}
