@@ -470,43 +470,30 @@ const PillarsHomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               <Text style={[styles.sectionTitle, { color: theme.text.primary }]}>
                 Daily Verse
               </Text>
-              <TouchableOpacity
-                activeOpacity={0.9}
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  Alert.alert('Coming Soon', 'Al-Quran feature will be available soon, In Sha Allah');
-                }}
+              <PillarsCard
+                variant="gradient"
+                gradient={
+                  isDark
+                    ? [PillarsColors.navy[900], PillarsColors.black[900]]
+                    : [PillarsColors.gold[50], PillarsColors.white]
+                }
+                style={styles.verseCard}
+                shadow="md"
               >
-                <PillarsCard
-                  variant="gradient"
-                  gradient={
-                    isDark
-                      ? [PillarsColors.navy[900], PillarsColors.black[900]]
-                      : [PillarsColors.gold[50], PillarsColors.white]
-                  }
-                  style={styles.verseCard}
-                  shadow="md"
-                >
-                  <View style={styles.verseContent}>
-                    <Text style={styles.arabicVerse}>{verse.arabic}</Text>
-                    <Text
-                      style={[styles.verseTranslation, { color: theme.text.secondary }]}
-                    >
-                      {verse.translation}
+                <View style={styles.verseContent}>
+                  <Text style={styles.arabicVerse}>{verse.arabic}</Text>
+                  <Text
+                    style={[styles.verseTranslation, { color: theme.text.secondary }]}
+                  >
+                    {verse.translation}
+                  </Text>
+                  <View style={styles.verseFooter}>
+                    <Text style={[styles.verseReference, { color: PillarsColors.gold[600] }]}>
+                      {verse.reference}
                     </Text>
-                    <View style={styles.verseFooter}>
-                      <Text style={[styles.verseReference, { color: PillarsColors.gold[600] }]}>
-                        {verse.reference}
-                      </Text>
-                      <Ionicons
-                        name="arrow-forward"
-                        size={16}
-                        color={PillarsColors.gold[500]}
-                      />
-                    </View>
                   </View>
-                </PillarsCard>
-              </TouchableOpacity>
+                </View>
+              </PillarsCard>
             </Animated.View>
           </View>
         </ScrollView>

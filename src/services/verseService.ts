@@ -22,6 +22,7 @@ interface CachedVerse {
 export class VerseService {
   /**
    * Get a daily verse (Ayah of the Day)
+   * Uses day-of-year to ensure the same verse is shown for the entire day
    */
   static async getDailyVerse(): Promise<Verse> {
     try {
@@ -31,13 +32,21 @@ export class VerseService {
         return cached.verse;
       }
 
-      // Generate random verse (1-6236 total verses in Quran)
-      const randomAyah = Math.floor(Math.random() * 6236) + 1;
+      // Use day of year to get a consistent daily verse (not random)
+      // This ensures the same verse is shown throughout the day
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now.getTime() - startOfYear.getTime();
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      // Map day of year to verse number (1-6236 total verses in Quran)
+      // Using modulo to cycle through all verses over the year
+      const dailyAyah = (dayOfYear % 6236) + 1;
 
       // Fetch from Al-Quran Cloud API (free, no key required)
       const [arabicResponse, englishResponse] = await Promise.all([
-        axios.get(`https://api.alquran.cloud/v1/ayah/${randomAyah}/ar.alafasy`),
-        axios.get(`https://api.alquran.cloud/v1/ayah/${randomAyah}/en.asad`)
+        axios.get(`https://api.alquran.cloud/v1/ayah/${dailyAyah}/ar.alafasy`),
+        axios.get(`https://api.alquran.cloud/v1/ayah/${dailyAyah}/en.asad`)
       ]);
 
       if (arabicResponse.data?.data && englishResponse.data?.data) {

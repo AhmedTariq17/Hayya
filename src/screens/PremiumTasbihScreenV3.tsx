@@ -39,6 +39,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MotiView, MotiText, AnimatePresence } from 'moti';
 // Removed gesture handlers to eliminate square boundary
@@ -204,6 +205,47 @@ const PremiumTasbihScreenV3: React.FC<{ navigation: any }> = ({ navigation }) =>
   const [savedSessions, setSavedSessions] = useState<any[]>([]);
   const [showTapHint, setShowTapHint] = useState(true);
 
+  // Sound ref for click sound
+  const soundRef = useRef<Audio.Sound | null>(null);
+
+  // Play click sound function
+  const playClickSound = useCallback(async () => {
+    if (!isSoundEnabled) return;
+
+    try {
+      // Unload previous sound if exists
+      if (soundRef.current) {
+        await soundRef.current.unloadAsync();
+      }
+
+      // Create a simple click sound using a beep frequency
+      const { sound } = await Audio.Sound.createAsync(
+        { uri: 'https://cdn.freesound.org/previews/256/256113_3263906-lq.mp3' },
+        { shouldPlay: true, volume: 0.3 }
+      );
+      soundRef.current = sound;
+
+      // Cleanup after sound finishes
+      sound.setOnPlaybackStatusUpdate((status) => {
+        if (status.isLoaded && status.didJustFinish) {
+          sound.unloadAsync();
+        }
+      });
+    } catch (error) {
+      // Silently fail - sound is optional enhancement
+      console.log('Sound playback error (non-critical):', error);
+    }
+  }, [isSoundEnabled]);
+
+  // Cleanup sound on unmount
+  useEffect(() => {
+    return () => {
+      if (soundRef.current) {
+        soundRef.current.unloadAsync();
+      }
+    };
+  }, []);
+
   // Animation values
   const buttonScale = useSharedValue(1);
   const countScale = useSharedValue(1);
@@ -309,6 +351,9 @@ const PremiumTasbihScreenV3: React.FC<{ navigation: any }> = ({ navigation }) =>
     setCount(newCount);
     setTotalCount(totalCount + 1);
 
+    // Play click sound
+    playClickSound();
+
     // Haptic feedback
     if (isVibrationEnabled) {
       if (newCount === goal) {
@@ -382,7 +427,7 @@ const PremiumTasbihScreenV3: React.FC<{ navigation: any }> = ({ navigation }) =>
         );
       }, 500);
     }
-  }, [count, totalCount, goal, selectedDhikr, isVibrationEnabled, savedSessions]);
+  }, [count, totalCount, goal, selectedDhikr, isVibrationEnabled, savedSessions, playClickSound]);
 
   const handleReset = () => {
     Alert.alert(
