@@ -161,7 +161,10 @@ class NotificationService {
           sound: this.settings.adhanSound ? 'adhan.wav' : 'default',
           vibrate: this.settings.vibration ? [0, 250, 250, 250] : undefined,
         },
-        trigger: notificationTime as any,
+        trigger: {
+          type: 'date',
+          date: notificationTime,
+        } as any,
       });
 
       // Save scheduled notification ID
@@ -225,7 +228,10 @@ class NotificationService {
           data: { type: 'jumuah_reminder' },
           sound: 'default',
         },
-        trigger: friday as any,
+        trigger: {
+          type: 'date',
+          date: friday,
+        } as any,
       });
 
       console.log('Scheduled Jumu\'ah reminder');
